@@ -1,11 +1,32 @@
 <html>
   <head>
     <?php
-      $servername = "";
-      $username = "";
+      $servername = "localhost";
+      $username = "root";
       $password = "";
-      $dbname = "";
+      $dbname = "pbac";
       $jumlahCalon = 4;
+
+      class AsyncOperation extends Thread {
+          $query;
+          $dbconn;
+
+          public function __construct($query,$dbconn) {
+            this->$query = $query;
+            this->$dbconn = $dbconn;
+          }
+
+          public function run() {
+                  while(true){
+                    $result = mysqli_query($dbconn,$query);
+                    if(mysqli_fetch_array($result)["jumlahLogin"] == jumlahCalon){
+                      echo "Berhasil Login";
+                      break;
+                    }
+                  }
+          }
+      }
+
       try{
         $dbconn = mysqli_connect($servername,$username,$password,$dbname);
       }catch(Exception $e){
@@ -17,13 +38,10 @@
       $result = mysqli_query($dbconn,$query);
       if(mysqli_fetch_array($result)["jumlahLogin"] != jumlahCalon){
         echo "Gembok";
-        while(true){
-          $result = mysqli_query($dbconn,$query);
-          if(mysqli_fetch_array($result)["jumlahLogin"] == jumlahCalon){
-            break;
-          }
-        }
+        $thread = new AsyncOperation($query,$dbconn);
       }
+        mysqli_close($dbconn);
+
   ?>
 </head>
   <body>
