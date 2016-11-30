@@ -1,5 +1,4 @@
 <html>
-
 	<head>
 			<?php
 				if(isset($_POST["login"])) {
@@ -18,10 +17,10 @@
 					}
 					$query = "select 1 from auth where hour(now()) >= 10;";
 					$result = $conn->query($query);
-					if ($result->num_rows == 0)
+					/*if ($result->num_rows == 0)
 					{
 						echo "<SCRIPT>alert('please login after 14:00 WIB');</SCRIPT>";
-					}else
+					}else*/
 					{
 						$query="select count(*) as result from auth where username = '".$userId."' and password = md5('".$_POST["password"]."')";
 						$result = $conn->query($query);
@@ -33,7 +32,7 @@
 								echo "<SCRIPT>alert('you\'re logged in, Mr. ".$userId."');</SCRIPT>";
 								session_start();
 								$_SESSION["userId"]=$userId;
-								echo "<script type=\"text/javascript\">location.href = 'index.html';</script>";
+								echo "<script type=\"text/javascript\">location.href = 'chart.php';</script>";
 
 						}
 						else
