@@ -31,6 +31,10 @@
 							$query = "update auth set isLogged=1 where username = '".$userId."'";
 							if($result = $conn->query($query))
 								echo "<SCRIPT>alert('you\'re logged in, Mr. ".$userId."');</SCRIPT>";
+								session_start();
+								$_SESSION["userId"]=$userId;
+								echo "<script type=\"text/javascript\">location.href = 'index.html';</script>";
+
 						}
 						else
 						{
@@ -42,7 +46,7 @@
 			?>
 
 			<script>
-				
+
 			</script>
 		<!-- Basics -->
 
@@ -53,9 +57,9 @@
 
 		<!-- CSS -->
 
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/animate.css">
-		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="css/reset.css" type="text/css">
+		<link rel="stylesheet" href="css/animate.css" type="text/css">
+		<link rel="stylesheet" href="css/styles.css" type="text/css">
 
 		<h1>Login Quick Count</h1>
 
