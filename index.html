@@ -6,10 +6,31 @@
 				margin: 0 auto;
 			}
 		</style>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+		
+		<script>
+			var prev = "0";
+			function refresh_div() {
+				jQuery.ajax({
+					url:'check.php',
+					type:'POST',
+					success:function(results) {
+						if(results===prev);
+						else {
+							jQuery(".result").attr("src","chart.php");
+						}
+						prev = results.valueOf();
+					}
+				});
+			}
+
+			t = setInterval(refresh_div,200);
+		</script>
+		
 		<TITLE>Quick Count Pilgub Banten 2017</TITLE>
 	</HEAD>
 	<BODY>
 		<H1 align="center">Pemilihan Gubenur Provinsi Banten 2017</H1>
-		<iframe src="chart.php" WIDTH="80%" HEIGHT="80%" frameBorder="0"/>
+		<iframe class="result" src="chart.php" WIDTH="700" HEIGHT="500" frameBorder="0"/>
 	</BODY>
 </HTML>
