@@ -11,80 +11,85 @@
         }
     ?>-->
 
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 
     <style>
-        .demo-card-wide.mdl-card {
-            width: 512px;
-        }
-
-        .demo-card-wide>.mdl-card__title {
-            color: #000;
-            height: 176px;
-            background-color: #fff;
-        }
-
-        .demo-card-wide>.mdl-card__menu {
-            color: #fff;
+        .piechart {
+            width: 30%;
+            margin: 0 auto;
         }
     </style>
 
 </head>
 
 <body>
+    <div class="w3-container w3-white">
 
-    <div class="demo-card-wide mdl-card mdl-shadow--2p">
-        <div class="mdl-card__title">
-            <h2 class="mdl-card__title-text">Welcome</h2>
+    </div>
+    <div class="w3-card-4 piechart  w3-animate-opacity w3-animate-top">
+        <div class="w3-container w3-blue ">
+            <h1>Total count</h1>
         </div>
-        <div class="mdl-card__supporting-text">
 
+        <div class="w3-container">
+            <div id="chart_div" class="w3-center"></div>
         </div>
     </div>
-    <div id="chart_div"></div>
 
 
-    <!-- scripts and css declaration -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+        <!-- scripts -->
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-    <script type="text/javascript">
-        google.charts.load('current', {
-            'packages': ['corechart']
-        });
-        google.charts.setOnLoadCallback(drawChart);
+        <script type="text/javascript">
+            google.charts.load('current', {
+                'packages': ['corechart']
+            });
+            google.charts.setOnLoadCallback(drawChart);
 
-        function drawChart() {
-            var options = {
-                'title': 'Jumlah Pemilihan',
-                'width': 400,
-                'height': 300
-            };
+            function drawChart() {
+                var options = {
+                    width: "100%",
+                    height: 400,
+                    colors: ['#00F', '#F00']
+                };
 
-            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+                var isLocked = false;
 
-            //Mengecheck database secara terus menerus
-            setInterval(function() {
-                $.ajax({
-                    url: "getQuickCount.php",
-                    type: "POST",
-                    async: true,
-                    success: function(results) {
-                        var split = results.split(';');
-                        var data = google.visualization.arrayToDataTable([
-                            ["Nama Calon", "Count"],
-                            ["Calon 1", parseInt(split[0])],
-                            ["Calon 2", parseInt(split[1])]
-                        ], false);
-                        chart.draw(data, options);
-                    }
-                });
-            }, 1000);
-        }
-    </script>
+                //Mengecheck database secara terus menerus
+                setInterval(function() {
+                        $.ajax({
+                            url: "getQuickCount.php",
+                            type: "POST",
+                            async: true,
+                            success: function(results) {
+                                if (results == "lock") {
+                                    if (isLocked == false) {
+                                        //Tampil image padlock jika tidak semua calon login
+                                        var image = document.createElement("img");
+                                        image.setAttribute("src", "padlock.png");
+                                        document.getElementById("chart_div").appendChild(image);
+                                        isLocked = true;
+                                    }
+                                } else {
+                                    //Membuat pie chartnya
+                                    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+                                    var split = results.split(';');
+                                    var data = google.visualization.arrayToDataTable([
+                                        ["Nama Calon", "Count"],
+                                        ["Calon 1", parseInt(split[0])],
+                                        ["Calon 2", parseInt(split[1])]
+                                    ], false);
+                                    chart.draw(data, options);
+                                }
+
+                            }
+
+                        });
+                    },
+                    1000);
+            }
+        </script>
 </body>
 
 </html>

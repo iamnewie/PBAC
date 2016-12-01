@@ -18,6 +18,8 @@
     $result = $conn->query($query);
     $row = $result->fetch_assoc();
     $isLogged = $row['Sum'];
+    // Check jika semua calon telah login
+
     if ($isLogged == '4') {
         $query = 'select count(options) AS Count from QRCodeSuratSuara where options=1';
         $result = $conn->query($query);
@@ -28,5 +30,8 @@
         $result = $conn->query($query);
         $row = $result->fetch_assoc();
         $suaraPasanganDua = $row['Count'];
+        echo "$suaraPasanganSatu;$suaraPasanganDua";
+    } else {
+        echo "lock";
     }
-    echo "$suaraPasanganSatu;$suaraPasanganDua";
+?>
