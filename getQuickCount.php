@@ -5,10 +5,8 @@
     $username = 'root';
     $password = '';
     $dbname = 'pbac';
-    $namaCalonSatu="Nelson";
-    $namaCalonDua="Matthew";
-    $countCalonSatu=0;
-    $countCalonDua=0;
+    $suaraPasanganSatu;
+    $suaraPasanganDua;
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -30,14 +28,5 @@
         $result = $conn->query($query);
         $row = $result->fetch_assoc();
         $suaraPasanganDua = $row['Count'];
-
-        $arr = array(
-            'cols' => array("id" => "A", "label" => "calon","pattern" => "", "type"=>"string"),
-                    array("id" => "B", "label" => "count","pattern" => "", "type"=>"number"),
-            'rows' => array(
-                "c" => array("v" => "$namaCalonSatu", "v" => "$countCalonSatu"),
-                "c"=> array("v" => "$namaCalonDua", "v" => "$countCalonDua")
-            ));
     }
-
-    echo json_encode($arr);
+    echo "$suaraPasanganSatu;$suaraPasanganDua";

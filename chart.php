@@ -1,76 +1,64 @@
-<html>
-	<head>
+<!DOCTYPE html>
 
+<html>
+
+<head>
+    <meta charset="UTF-8">
     <?php
-        /*session_start();
+        session_start();
         if (!isset($_SESSION['userId'])) {
             echo "<script type=\"text/javascript\">location.href='login.php'</script>";
-        }*/
-    ?>
-
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script type="text/javascript">
-
-        var countCalonSatu = 0;
-        var countCalonDua = 0;
-
-
-      // Load the Visualization API and the corechart package.
-      google.charts.load('current', {'packages':['corechart']});
-
-      // Set a callback to run when the Google Visualization API is loaded.
-      google.charts.setOnLoadCallback(drawChart);
-
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
-      function drawChart() {
-
-          var jsonData = $.ajax({
-          url: "getQuickCount.php",
-          dataType: "json",
-          async: false
-          }).responseText;
-
-        // Create the data table.
-        var data = new google.visualization.DataTable(jsonData);
-
-        // Set chart options
-        var options = {'title':'Jumlah Pemilihan',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-
-        /*var handler(){
-            var ajaxRequest = new XMLHttpRequest(); // The variable that makes Ajax possible!
-            ajaxRequest.onreadstatechage = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    if(this.responseText.length > 0){
-                        var split = this.responseText.split(";");
-                        data. countCalonSatu = parseInt(split[0]);
-                        countCalonDua = parseInt(split[1]);
-                        document.getElementById("test").innerHTML = this.responseText;
-                    }
-                    else {
-                        document.getElementById("test").innerHTML = "Fail";
-                    }
-                }
-            };
-            xmlhttp.open("GET", "getQuickCount.php", true);
-            xmlhttp.send();
         }
-        google.visualization.events.addListener(chart, 'ready', selectHandler);*/
+    ?>
+</head>
 
-        chart.draw(data, options);
-    }
+<body>
+
+    <div id="chart_div"></div>
+
+    <!-- scripts and css declaration -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+
+    <script>if(typeof($.fn.modal) === 'undefined') {document.write('<script src="/local/bootstrap.min.js"><\/script>')}</script>
+
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var options = {
+                'title': 'Jumlah Pemilihan',
+                'width': 400,
+                'height': 300
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+
+            //Mengecheck database secara terus menerus
+            setInterval(function() {
+                $.ajax({
+                    url: "getQuickCount.php",
+                    type: "POST",
+                    async: true,
+                    success: function(results) {
+                        var split = results.split(';');
+                        var data = google.visualization.arrayToDataTable([
+                            ["Nama Calon", "Count"],
+                            ["Calon 1", parseInt(split[0])],
+                            ["Calon 2", parseInt(split[1])]
+                        ], false);
+                        chart.draw(data, options);
+                    }
+                });
+            }, 1000);
+        }
     </script>
-	</head>
-
-	<body>
-        <div id="test"></div>
-		<div id="chart_div"></div>
-	</body>
+</body>
 </html>

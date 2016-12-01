@@ -35,8 +35,7 @@
 								echo "<script type=\"text/javascript\">location.href = 'chart.php';</script>";
 
 						}
-						else
-						{
+						else{
 							echo "<SCRIPT>alert('wrong password');</SCRIPT>";
 						}
 					}
