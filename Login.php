@@ -6,14 +6,15 @@
 
 	<?php
         if (isset($_POST['login'])) {
-            $userId = $_POST['userId'];
-            $password = $_POST['password'];
+
             $servername = 'localhost';
             $username = 'root';
             $password = '';
             $dbname = 'pbac';
-
             $conn = new mysqli($servername, $username, $password, $dbname);
+
+						$userId = mysqli_real_escape_string($conn, $_POST['userId']);
+            $password = mysqli_real_escape_string($conn,$_POST['password']);
 
           // Check connection
           if ($conn->connect_error) {
@@ -32,9 +33,8 @@
                     if ($result = $conn->query($query)) {
                         echo "<SCRIPT>alert('you\'re logged in, Mr. ".$userId."');</SCRIPT>";
                     }
-                    session_start();
-                    $_SESSION['userId'] = $userId;
-                    echo "<script type=\"text/javascript\">location.href = 'chart.php';</script>";
+
+                    echo "<script type=\"text/javascript\">location.href = 'chart.html';</script>";
                 } else {
                     echo "<SCRIPT>alert('wrong password');</SCRIPT>";
                 }
@@ -64,11 +64,10 @@
 
 <body>
 
-	<h1>Pilkasmart</h1>
 	<div class="w3-card-4 inputform w3-animate-opacity w3-animate-top">
 
 		<div class="w3-container w3-red">
-			<h2>Pilkasmart</h2>
+			<h2>Pilkasmart Login</h2>
 		</div>
 
 		<form method="post" action="#">
@@ -90,6 +89,8 @@
 							<button class="w3-btn w3-white w3-border w3-border-red w3-round-large w3-hover-red" type="submit" value="Login" name="login">
 								Login
 							</button>
+
+							<button type="button" name="back">Back</button>
 						</div>
 
 		</form>
