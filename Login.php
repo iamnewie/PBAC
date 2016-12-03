@@ -6,15 +6,14 @@
 
 	<?php
         if (isset($_POST['login'])) {
-
             $servername = 'localhost';
             $username = 'root';
             $password = '';
             $dbname = 'pbac';
             $conn = new mysqli($servername, $username, $password, $dbname);
 
-						$userId = mysqli_real_escape_string($conn, $_POST['userId']);
-            $password = mysqli_real_escape_string($conn,$_POST['password']);
+            $userId = mysqli_real_escape_string($conn, $_POST['userId']);
+            $password = mysqli_real_escape_string($conn, $_POST['password']);
 
           // Check connection
           if ($conn->connect_error) {
@@ -26,18 +25,18 @@
                 echo "<SCRIPT>alert('please login after 14:00 WIB');</SCRIPT>";
             } else {*/
                 $query = "select count(*) as result from auth where username = '".$userId."' and password = md5('".$_POST['password']."')";
-                $result = $conn->query($query);
-                $row = $result->fetch_assoc();
-                if ($row['result'] != 0) {
-                    $query = "update auth set isLogged=1 where username = '".$userId."'";
-                    if ($result = $conn->query($query)) {
-                        echo "<SCRIPT>alert('you\'re logged in, Mr. ".$userId."');</SCRIPT>";
-                    }
-
-                    echo "<script type=\"text/javascript\">location.href = 'chart.html';</script>";
-                } else {
-                    echo "<SCRIPT>alert('wrong password');</SCRIPT>";
+            $result = $conn->query($query);
+            $row = $result->fetch_assoc();
+            if ($row['result'] != 0) {
+                $query = "update auth set isLogged=1 where username = '".$userId."'";
+                if ($result = $conn->query($query)) {
+                    echo "<SCRIPT>alert('you\'re logged in, Mr. ".$userId."');</SCRIPT>";
                 }
+
+                echo "<script type=\"text/javascript\">location.href = 'chart.html';</script>";
+            } else {
+                echo "<SCRIPT>alert('wrong password');</SCRIPT>";
+            }
           //}
             $conn->close();
         }
@@ -49,7 +48,7 @@
 			.inputform {
 				width: 30%;
 				height: 350px;
-				margin: 250 auto;
+				margin: 150 auto;
 			}
 
 			.button {
@@ -63,38 +62,39 @@
 </head>
 
 <body>
+	<div class="w3-row">
+		<div class="w3-col s1 m3 l3" style="height : 100%;"></div>
+		<div class="w3-card-4 inputform w3-animate-opacity w3-animate-top w3-col s10 m6 l6">
+			<div class="w3-container w3-red">
+				<h2>Pilkasmart Login</h2>
+			</div>
 
-	<div class="w3-card-4 inputform w3-animate-opacity w3-animate-top">
-
-		<div class="w3-container w3-red">
-			<h2>Pilkasmart Login</h2>
-		</div>
-
-		<form method="post" action="#">
-
-			<p>
-				<div class="w3-container">
-					<label><b>Username :</b></label>
-					<input class="w3-input" name="userId" type="text" required></input>
-				</div>
+			<form method="post" action="#">
 
 				<p>
 					<div class="w3-container">
-						<label><b>Password :</b></label>
-						<input class="w3-input w3- passwordInput" name="password" type="password" required></input>
+						<label><b>Username :</b></label>
+						<input class="w3-input" name="userId" type="text" required></input>
 					</div>
 
 					<p>
-						<div class="w3-container button">
-							<button class="w3-btn w3-white w3-border w3-border-red w3-round-large w3-hover-red" type="submit" value="Login" name="login">
+						<div class="w3-container">
+							<label><b>Password :</b></label>
+							<input class="w3-input w3- passwordInput" name="password" type="password" required></input>
+						</div>
+
+						<p>
+							<div class="w3-container button">
+								<button class="w3-btn w3-white w3-border w3-border-red w3-round-large w3-hover-red" type="submit" value="Login" name="login">
 								Login
 							</button>
 
-							<button type="button" name="back">Back</button>
-						</div>
+								<button type="button" class="w3-btn w3-white w3-border w3-border-red w3-round-large w3-hover-red" onclick="window.location.href='chart.html'" name="back">Back</button>
+							</div>
 
-		</form>
-
+			</form>
+		</div>
+		<div class="w3-col s1 m3 l3" style="height:100%"></div>
 	</div>
 </body>
 
