@@ -43,8 +43,12 @@
       ?>
 
 		<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
 		<style>
+		body{
+			font-family: 'Montserrat',sans-serif;
+		}
 			.inputform {
 				width: 30%;
 				height: 350px;
@@ -58,7 +62,7 @@
 			}
 		</style>
 
-		<title>Pilkasmart</title>
+		<title>Pilkasmart Login</title>
 </head>
 
 <body>
@@ -66,7 +70,7 @@
 		<div class="w3-col s1 m3 l3" style="height : 100%;"></div>
 		<div class="w3-card-4 inputform w3-animate-opacity w3-animate-top w3-col s10 m6 l6">
 			<div class="w3-container w3-red">
-				<h2>Pilkasmart Login</h2>
+				<h2><b>PILKASMART LOGIN</b></h2>
 			</div>
 
 			<form method="post" action="#">
@@ -85,11 +89,11 @@
 
 						<p>
 							<div class="w3-container button">
-								<button class="w3-btn w3-white w3-border w3-border-red w3-round-large w3-hover-red" type="submit" value="Login" name="login">
+								<button class="w3-btn w3-white w3-border w3-border-red w3-round-large w3-hover-blue" type="submit" value="Login" name="login">
 								Login
 							</button>
 
-								<button type="button" class="w3-btn w3-white w3-border w3-border-red w3-round-large w3-hover-red" onclick="window.location.href='chart.html'" name="back">Back</button>
+								<button type="button" class="w3-btn w3-white w3-border w3-border-red w3-round-large w3-hover-blue" onclick="window.location.href='chart.html'" name="back">Back</button>
 							</div>
 
 			</form>

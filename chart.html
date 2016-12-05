@@ -3,18 +3,40 @@
 
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+        <meta name="viewport" content="width=device-width, initial-scale=0.6">
 
+        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <style>
+        body{
+            font-family: 'Montserrat',sans-serif;
+            
+        }
             .header {
-                margin: 10px auto;
                 width: 100%;
-                height: auto;
+                height: 100px;
+            }
+
+            .header h1 {
+                font-size: 20px;
+                display: inline-block;
+                margin: 30px auto auto 27px;
+            }
+
+
+
+            .logo {
+                display: block;
+                width: 10%;
+                height: 20%;
+                min-width: 150px;
+                min-width: 130px;
+                margin: 30px auto;
             }
 
             .loginButton {
                 display: block;
-                margin: 0 10px 10px auto;
+                margin: 25px auto;
             }
 
             .footer {
@@ -96,9 +118,22 @@
     </head>
 
     <body>
-        <div class="w3-container header w3-red w3-content">
-            <h1>Logo</h1>
-            <button class="w3-btn loginButton w3-border w3-ripple w3-round-large w3-red w3-hover-blue" onclick="window.location.href='login.php'" type="button">Login untuk calon</button>
+        <div class="w3-row">
+            <div class="w3-container header w3-red w3-row s12 m12 l12">
+                <h1 onclick="window.location.href='home.html'" style="cursor:pointer;">
+                    <b>PILKASMART</b>
+                </h1>
+            </div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-container w3-animate-opacity w3-animate-top w3-row s12 m12 l12">
+                <div class="logo w3-animate-opacity">
+                    <img src="lg 2.png" class="w3-image"></img>
+                </div>
+                <div class="loginButton w3-center">
+                    <button class="w3-btn w3-border w3-ripple w3-round-large w3-red w3-hover-blue" onclick="window.location.href='login.php'" type="button">Login untuk calon</button>
+                </div>
+            </div>
         </div>
 
         <div class="w3-row">
@@ -243,7 +278,6 @@
                                 document.getElementById("padlock2").style.display = "none";
                                 document.getElementById("chart2_div").style.display = "block";
                                 chart2.draw(data, options);
-
                             }
 
                         }
