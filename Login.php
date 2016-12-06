@@ -21,9 +21,9 @@
           }
             $query = 'select 1 from auth where hour(now()) >= 10;';
             $result = $conn->query($query);
-            if ($result->num_rows == 0) {
+            /*if ($result->num_rows == 0) {
                 echo "<SCRIPT>alert('please login after 14:00 WIB');</SCRIPT>";
-            } else {
+            } else {*/
                 $query = "select count(*) as result from auth where username = '".$userId."' and password = md5('".$_POST['password']."')";
             $result = $conn->query($query);
             $row = $result->fetch_assoc();
@@ -37,7 +37,7 @@
             } else {
                 echo "<SCRIPT>alert('wrong password');</SCRIPT>";
             }
-          }
+          //}
             $conn->close();
         }
       ?>
