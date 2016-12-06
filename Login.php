@@ -6,10 +6,10 @@
 
 	<?php
         if (isset($_POST['login'])) {
-            $servername = 'localhost';
-            $username = 'root';
-            $password = '';
-            $dbname = 'pbac';
+						$servername = "localhost";
+						$username = "u549788653_pilka";
+						$password = "pitacu#";
+						$dbname = "u549788653_pbac";
             $conn = new mysqli($servername, $username, $password, $dbname);
 
             $userId = mysqli_real_escape_string($conn, $_POST['userId']);
@@ -21,9 +21,9 @@
           }
             $query = 'select 1 from auth where hour(now()) >= 10;';
             $result = $conn->query($query);
-            /*if ($result->num_rows == 0) {
+            if ($result->num_rows == 0) {
                 echo "<SCRIPT>alert('please login after 14:00 WIB');</SCRIPT>";
-            } else {*/
+            } else {
                 $query = "select count(*) as result from auth where username = '".$userId."' and password = md5('".$_POST['password']."')";
             $result = $conn->query($query);
             $row = $result->fetch_assoc();
@@ -33,11 +33,11 @@
                     echo "<SCRIPT>alert('you\'re logged in, Mr. ".$userId."');</SCRIPT>";
                 }
 
-                echo "<script type=\"text/javascript\">location.href = 'chart.html';</script>";
+                echo "<script type=\"text/javascript\">location.href = 'quickcount.html';</script>";
             } else {
                 echo "<SCRIPT>alert('wrong password');</SCRIPT>";
             }
-          //}
+          }
             $conn->close();
         }
       ?>
@@ -93,7 +93,7 @@
 								Login
 							</button>
 
-								<button type="button" class="w3-btn w3-white w3-border w3-border-red w3-round-large w3-hover-blue" onclick="window.location.href='chart.html'" name="back">Back</button>
+								<button type="button" class="w3-btn w3-white w3-border w3-border-red w3-round-large w3-hover-blue" onclick="window.location.href='quickcount.html'" name="back">Back</button>
 							</div>
 
 			</form>
@@ -101,5 +101,4 @@
 		<div class="w3-col s1 m3 l3" style="height:100%"></div>
 	</div>
 </body>
-
 </html>
