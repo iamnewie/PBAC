@@ -279,19 +279,17 @@
                                 document.getElementById("padlock2").style.display = "none";
                                 document.getElementById("chart2_div").style.display = "block";
 
-                                var arrays = new Array(['Lokasi','Count']);
+                                var arrays = new Array(['Lokasi','Count Calon 1','Count Calon 2']);
 
                                 for(var keys in obj.lokasicount){
                                     for(var key in obj.lokasicount[keys]){
-                                        var array = new Array(key,parseInt(obj.lokasicount[keys][key]));
-                                        arrays.push(array);
+                                            var array = new Array(key,parseInt(obj.lokasicount[keys][key][0]),parseInt(obj.lokasicount[keys][key][1]));
+                                            arrays.push(array);
                                     }
                                 };
 
 
                                 var data = google.visualization.arrayToDataTable(arrays, false);
-
-
 
                                 chart2.draw(data, options);
                             }
