@@ -42,7 +42,10 @@
             $arrayChart = array('lokasicount' => $arrayLokasiCount);
 
             echo json_encode(array_merge($arrayCalonSatu, $arrayCalonDua, $arrayChart));
+
         } else {
             echo 'lock';
         }
+
     }
+    $conn->close();
