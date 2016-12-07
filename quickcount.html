@@ -6,28 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=0.6">
 
     <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <style>
-            body {
-            font-family: 'Montserrat', sans-serif;
+            body{
+                font-family: 'Montserrat', sans-serif;
         }
 
         .header {
             width: 100%;
             height: 190px;
-        }
-
-        .header h1 {
-            font-size: 21px;
-            display: inline-block;
-            margin: 80px auto auto 100px;
-        }
-
-        .header h2{
-            font-size: 16px;
-            font-weight: 300px;
-            display: inline-block;
-            margin: 80px 100px auto 100px;
         }
 
         .logo {
@@ -48,19 +34,6 @@
             margin: 0;
             width: 100%;
             height: 350px;
-        }
-
-        .foot_text {
-            padding-left: 100px;
-            padding-top: 60px;
-        }
-
-        .foot_text h3{
-            font-size: 20px;
-        }
-
-        .foot_text p {
-            font-size: 16px;
         }
 
         .charts {
@@ -126,18 +99,42 @@
             }
     </style>
 
+    <link rel='stylesheet' id='bootstrap-css'  href='http://gentsthemes.com/demo/stanleywp/wp-content/themes/stanleywp/css/bootstrap.min.css?ver=3.0.3' type='text/css' media='all' />
+    <link rel='stylesheet' id='wpbase-css'  href='http://gentsthemes.com/demo/stanleywp/wp-content/themes/stanleywp/css/wpbase.min.css?ver=3.0.3' type='text/css' media='all' />
+    <link rel='stylesheet' id='font-awesome-css'  href='http://gentsthemes.com/demo/stanleywp/wp-content/themes/stanleywp/css/font-awesome.min.css?ver=4.0.3' type='text/css' media='all' />
+    <link rel='stylesheet' id='magnific-css'  href='http://gentsthemes.com/demo/stanleywp/wp-content/themes/stanleywp/css/magnific.css?ver=0.9.4' type='text/css' media='all' />
+    <link rel='stylesheet' id='theme-style-css'  href='http://gentsthemes.com/demo/stanleywp/wp-content/themes/stanleywp/style.css?ver=3.0.3' type='text/css' media='all' />
+    <link rel='stylesheet' id='googleFonts-css'  href='http://fonts.googleapis.com/css?family=Montserrat%3A400%2C700&#038;ver=4.4.1' type='text/css' media='all' />
     <title>QuickCount Pilkasmart</title>
 </head>
 
 <body>
-    <div class="w3-row">
-        <div class="w3-container header w3-red w3-row s12 m12 l12">
-            <h1 onclick="window.location.href='index.html'" style="cursor:pointer;">
-                    <b>PILKASMART</b>
-                </h1>
-            <h2>INSTRUKSI PENGUNAAN</h2>
+  <header>
+    <nav role="navigation">
+      <div class="navbar navbar-inverse navbar-static-top" style="background:#f44336;">
+        <div class="container">
+           <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse" >
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="index.html" title="PilkaSmart" rel="homepage"><b>PilkaSmart</b></a>
+          </div>
+          <div class="navbar-collapse collapse navbar-responsive-collapse">
+            <ul id="menu-menu-1" class="nav navbar-nav navbar-right">
+            <li id="menu-item-19" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-19"><a href="instruksiPenggunaan.html">Instruksi Penggunaan</a></li>
+            <li id="menu-item-20" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20"><a href="tentangKami.html">Hubungi Kami</a></li>
+            </ul>
+          </div>
         </div>
-    </div>
+
+      </div>
+    </nav>
+  </header><!-- end of header -->
+
     <div class="w3-row">
         <div class="w3-container w3-animate-opacity w3-animate-top w3-row s12 m12 l12">
             <div class="logo w3-animate-opacity">
@@ -149,11 +146,12 @@
         </div>
     </div>
 
+
     <div class="w3-row">
         <div class="piechart w3-col s12 m12 l6">
             <div class="w3-card-4 w3-animate-opacity w3-animate-top">
                 <div class="w3-container w3-red" style="width: 100%;">
-                    <h1>Total suara</h1>
+                    <h1 style="color:white;">Total suara</h1>
                 </div>
 
                 <div class="w3-container" style="width: 100%; height : 400px;">
@@ -167,8 +165,8 @@
 
         <div class="barchart w3-col s12 m12 l6">
             <div class="w3-card-4 w3-animate-opacity w3-animate-top">
-                <div class="w3-container w3-red">
-                    <h1>
+                <div class="w3-container w3-red" style="width:100%;">
+                    <h1 style="color:white;">
                             Total suara per daerah</h1>
                 </div>
 
@@ -182,30 +180,45 @@
         </div>
     </div>
 
-    <div class="w3-row">
-        <div class="w3-rest ">
-            <div class="w3-container w3-red footer">
-                <div class="foot_text">
-                    <h3><b>DIKEMBANGKAN OLEH</b></h3>
-                    <p>
-                        Devin Ryan Riota
-                        <br> Nelson Wijaya
-                        <br> Wahyudi Khusnandar
-                        <br> Dhanny Kurniawan
-                        <br> Matthew Edward
+        <footer id="footer" style="background:#f44336;">
+    		<div class="container">
+    			<div class="row">
+    				<div class="col-lg-4">
+    					<div id="text-2" class="widget-wrapper widget_text"><div class="footer-title"><h4>Dikembangkan oleh</h4></div>
+    						<div class="textwidget">
+    							<p>
+    								Devin Ryan Riota<br/>
+    								Nelson Wijaya<br/>
+    								Wahyudi Khusnandar<br>
+    								Dhanny Kurniawan<br>
+    								Matthew Edward
+    							</p>
+    						</div>
+    					</div>
+    				</div>
 
-                    </p>
-                </div>
-            </div>
-        </div>
+    			</div><!-- /row -->
+    		</div><!-- /container -->
+    	</footer><!-- end #footer -->
 
     </div>
 
     <!-- scripts -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type='text/javascript' src='http://gentsthemes.com/demo/stanleywp/wp-content/themes/stanleywp/js/modernizr.custom.js?ver=2.6.2'></script>
+    <script type='text/javascript' src='http://gentsthemes.com/demo/stanleywp/wp-content/themes/stanleywp/js/magnific.min.js?ver=0.9.4'></script>
+    <script type='text/javascript' src='http://gentsthemes.com/demo/stanleywp/wp-content/themes/stanleywp/js/bootstrap.js?ver=4.4.1'></script>
+    <script type='text/javascript' src='http://gentsthemes.com/demo/stanleywp/wp-content/themes/stanleywp/js/hover.zoom.js?ver=4.4.1'></script>
+    <script type='text/javascript' src='http://gentsthemes.com/demo/stanleywp/wp-content/themes/stanleywp/js/main.js?ver=4.4.1'></script>
 
     <script type="text/javascript">
+
+        jQuery(document).ready(function($){
+            $("a[rel='magnific']").magnificPopup({
+                type:'image'
+            });
+        });
         google.charts.load('current', {
             'packages': ['corechart']
         });
@@ -244,8 +257,7 @@
 
             var isLocked = false;
 
-            //Mengecheck database secara terus menerus
-            setInterval(function() {
+            function graph(){
                 $.ajax({
                     url: "getQuickCount.php",
                     type: "POST",
@@ -310,7 +322,11 @@
                     }
 
                 });
-            }, 1000);
+            }
+
+            graph();
+            //Mengecheck database secara terus menerus
+            setInterval(graph(), 10000);
         }
     </script>
 </body>

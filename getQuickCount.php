@@ -2,9 +2,9 @@
 // content="text/plain; charset=utf-8"
 
     $servername = 'localhost';
-    $username = 'u549788653_pilka';
-    $password = 'pitacu#';
-    $dbname = 'u549788653_pbac';
+    $username = 'root';
+    $password = '';
+    $dbname = 'pbac';
     $suaraPasanganSatu;
     $suaraPasanganDua;
 
